@@ -1,7 +1,10 @@
+import { lazy , Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import Dashboard from './view/pages/Dashboard';
 import Signin from './view/pages/auth/Signin';
-import Signup from './view/pages/auth/Signup';
+import Signup from './view/pages/auth/Signup'
+
+
+
 
 const router = createBrowserRouter([
     {

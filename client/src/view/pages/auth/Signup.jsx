@@ -1,97 +1,54 @@
 import React, { useState } from 'react';
-import Input from '../../components/Input';
 import Button from '../../components/Button';
+import { Navigate } from 'react-router-dom';
+import { signupFields } from '../../../data';
+import  axios  from 'axios';
+
 
 export default function Signup() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         password: "",
-        confirmPassword: "",
         username: "",
         address: "",
         country: "",
         city: "",
         mobile: "",
+        postal_code:""
     });
     const [error, setError] = useState(null);
     const [id, setId] = useState(0);
 
-    const fields = [
-      {
-        id: 'name',
-        name: 'Name',
-        type: 'text',
-        placeholder: 'eg: John Doe',
-      },
-      {
-        id: 'username',
-        name: 'Username',
-        type: 'text',
-        placeholder: 'eg: JohnDoe1',
-      },
-      {
-        id: 'email',
-        name: 'Email',
-        type: 'email',
-        placeholder: 'eg: johndoe@example.com',
-      },
-      {
-        id: 'password',
-        name: 'Password',
-        type: 'password',
-        placeholder: '**********',
-      },
-      {
-        id: 'confirmPassword',
-        name: 'Confirm Password',
-        type: 'password',
-        placeholder: '**********',
-      },
-      
-      {
-        id: 'address',
-        name: 'Address',
-        type: 'text',
-        placeholder: 'eg: Usa, Chigago 7th avenue',
-      },
-      {
-        id: 'country',
-        name: 'Country',
-        type: 'text',
-        placeholder: 'eg: USA',
-      },
-      {
-        id: 'city',
-        name: 'City',
-        type: 'text',
-        placeholder: 'eg: Chicago',
-      },
-      {
-        id: 'mobile',
-        name: 'Mobile',
-        type: 'text',
-        placeholder: 'eg: 0532460281',
-      },
-    ]
+    
     
     const handleNext = (e) => {
       e.preventDefault()
-        // Validate the form fields before proceeding
-        const currentField = fields[id];
+        // Validate the form signupFields before proceeding
+        const currentField = signupFields[id];
         if (!formData[currentField.id]) {
             setError(`Please fill in ${currentField.name}`);
             return;
         }
 
         setError(null);
-        if (id < fields.length - 1) {
+        if (id < signupFields.length - 1) {
             setId(id + 1);
         } else {
-            // Proceed with form submission
-            console.log("Form data:", formData);
+          axios.post('http://localhost:8000/api/user/register', formData)
+              .then((response) => {
+                  console.log(response.data);
+              })
+              .catch(function (error) {
+                if (error.response) {
+                
+                  setError(error.response.data.errors);
+                 
+                }
+              });
         }
     };
+
 
     const handlePrev = (e) => {
       e.preventDefault()
@@ -103,7 +60,6 @@ export default function Signup() {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        console.log(formData)
     };
 
     return (
@@ -124,16 +80,16 @@ export default function Signup() {
                         <form>
                             <div className=''>
                                 <div className='flex flex-col w-full'>
-                                  <label htmlFor={fields[id].id} className='mb-1'>
-                                      <span className="input-label">
-                                          {fields[id].name}
+                                  <label htmlFor={signupFields[id].id} className='mb-1'>
+                                      <span className="input-label capitalize">
+                                          {signupFields[id].name}
                                       </span>
                                   </label>
                                   <input
-                                    type={fields[id].type}
-                                    name={fields[id].id}
-                                    value={formData[fields[id].id]}
-                                    placeholder={fields[id].placeholder}
+                                    type={signupFields[id].type}
+                                    name={signupFields[id].id}
+                                    value={formData[signupFields[id].id]}
+                                    placeholder={signupFields[id].placeholder}
                                     className='input mb-3 '
                                     onChange={handleInputChange}
                                     required
@@ -148,7 +104,7 @@ export default function Signup() {
                                     customClass={`transition-all duration-500 ${id === 0 ? 'pointer-events-none bg-gray-400' : 'bg-primary'}`}
                                 />
                                 <Button
-                                    name={`${id === fields.length - 1 ? "Sign Up" : "Next"}`}
+                                    name={`${id === signupFields.length - 1 ? "Sign Up" : "Next"}`}
                                     onClick={handleNext}
                                     customClass={"bg-primary transition-all duration-500"}
                                 />
@@ -166,7 +122,7 @@ export default function Signup() {
 
                             <div className='flex space-x-1 text-center justify-center relative bottom-0 mt-5 lg:mt-10 p-3'>
                               {
-                                fields.map((field, key) => {
+                                signupFields.map((field, key) => {
                                   return (
                                     <div className={`w-2 h-2 lg:w-3 lg:h-3  transition-all duration-500 rounded-full shadow-lg ${key === id ? "bg-primary" : "bg-accent"}`}></div>
                                    );
