@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 const Layout = lazy(() => import('./views/layouts/Layout'));
-const Page = lazy(() => import('./views/pages/Page'));
+const Page = lazy(() => import('./views/layouts/Page'));
 
 function App() {
   return (
