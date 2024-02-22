@@ -14,6 +14,7 @@ function App() {
           <Route path="/store" element={<Page name={"Store"} />} />
           <Route path="/category" element={<Page name={"Category"} />} />
           <Route path="/products" element={<Page name={"Products"} />} />
+          <Route path="*" element={<Page name={"Not found"} />} />
         </Route>
       </Routes>
     </Suspense>
