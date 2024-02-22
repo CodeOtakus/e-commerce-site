@@ -3,7 +3,7 @@ import NavItems from './NavItems'
 
 export default function Navbar() {
   return (
-    <nav className="w-[15rem] h-screen fixed p-5 flex flex-col  justify-between max-lg:hidden bg-white shadow-lg">
+    <nav className="w-[15rem] h-screen fixed p-5 flex flex-col  justify-between  bg-white shadow-lg z-50">
         <div >
            <div className=" flex flex-col items-center gap-y-2 w-full  p-2 rounded-md">
                 <img src="https://picsum.photos/id/237/200/300" alt="logo" className="w-20 h-20 rounded-full object-cover" />

@@ -6,7 +6,7 @@ const Page = lazy(() => import('./views/layouts/Page'));
 
 function App() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Page name={"loading ...."} />}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Page name={"Home"} />} />
