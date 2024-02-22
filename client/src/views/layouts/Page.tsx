@@ -2,7 +2,6 @@ import React,{useState} from 'react'
 import { FaRegCircleUser } from "react-icons/fa6";
 import { HiMenu } from "react-icons/hi";
 
-
 export default function Page({name}) {
 
 
@@ -22,6 +21,7 @@ export default function Page({name}) {
       <div className=" p-5 ">
         {name}
 
+        
       </div>
     </div>
   )
