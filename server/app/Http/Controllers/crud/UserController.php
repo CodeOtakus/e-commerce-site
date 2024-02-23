@@ -86,6 +86,7 @@ class UserController extends Controller
         if(!$user){
             return response()->json(['message' => 'User not found'], 404);
         }
+        
         $stores = Store::where('user_id', $id)->get();
         $category = Category::where('user_id', $id)->get();
         $product = Product::where('user_id', $id)->get();

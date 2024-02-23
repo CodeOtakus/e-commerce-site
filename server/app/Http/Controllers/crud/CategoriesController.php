@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
+use App\Models\Store;
 
 class CategoriesController extends Controller
 {
@@ -27,6 +29,15 @@ class CategoriesController extends Controller
 
     public function CreateCategory(Request $request)
     {
+        $user = User::find($request->user_id);
+        $store = Store::find($request->store_id);
+
+        if(!$user){
+            return response()->json(['message' => 'User not found'], 404);
+        }else if(!$store){
+            return response()->json(['message' => 'Store not found'], 404);
+        }
+        
         $category = Category::create($request ->all());
         return response()->json([
             'message' => 'Category created successfully',
