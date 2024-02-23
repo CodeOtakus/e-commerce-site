@@ -5,7 +5,7 @@ export default function ({name, value, icon}:any) {
         <h1 className='text-md text-gray-500 capitalize '>{name}</h1>
         <h1 className={`text-3xl font-bold text-orange-500 md:text-2xl lg:text-3xl`}>{value}</h1>
       </div>
-      <div className="text-4xl text-orange-500">
+      <div className="text-4xl text-orange-500 md:text-3xl lg:text-4xl">
         {icon}
       </div>
     </div>
