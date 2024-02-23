@@ -20,7 +20,7 @@ export default function Dashboard() {
        </div>
 
        <div className='mt-5 w-full flex justify-between max-lg:flex-col-reverse  max-lg:space-y-5 lg:space-x-3'>
-        <div className='bg-white lg:w-1/3 w-full lg:h-[25rem] p-5 rounded-md shadow-lg max-lg:mt-5'>
+        <div className='bg-white lg:w-1/3 w-1/2 lg:h-[25rem] p-5 rounded-md shadow-lg max-lg:mt-5 h-[20rem]'>
           <Doughnut 
             data={{
               labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
