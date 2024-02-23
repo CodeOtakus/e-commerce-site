@@ -1,19 +1,17 @@
-import {  useLayoutEffect } from "react"
-import Axios from "axios"
+import {  useLayoutEffect , useState} from "react"
+import { getData } from "../../../utils/GetData"
 
 
 export default function Store() {
     let id = "5507e890-b307-4529-a06c-d57d3cf323e0"
+    const [store, setStore] = useState<any>([])
 
     useLayoutEffect(() => {
-        Axios.get(import.meta.env.VITE_API_URL + `/store/${id}/all`)
-        .then(res => {
-        console.log(res.data)
-        })
+       setStore(getData("/store/"+id+"/all"))
     }, [])
 
 
   return (
-    <div>Store</div>
+    <div>{store.store}</div>
   )
 }

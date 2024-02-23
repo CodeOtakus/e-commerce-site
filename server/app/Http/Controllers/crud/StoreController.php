@@ -16,7 +16,7 @@ class StoreController extends Controller
     {
         $store = Store::where('user_id', $id)->get();
 
-        if(!$store){
+        if($store == null){
             return response()->json(['message' => 'Store not found'], 404);
         }
         return response()->json(['store' => $store]);
@@ -28,8 +28,8 @@ class StoreController extends Controller
     public function CreateStore(Request $request)
     {
 
-        $store = User::find($request->user_id);
-        if(!$store){
+        $user = User::find($request->user_id);
+        if(!$user){
             return response()->json(['message' => 'User not found'], 404);
         }
 
