@@ -1,8 +1,14 @@
 import React,{useState} from 'react'
 import { FaRegCircleUser } from "react-icons/fa6";
 import { HiMenu } from "react-icons/hi";
+import {userlinks} from '../../Data.jsx'
+import {NavLink} from "react-router-dom"
+
+
+
 
 export default function Page({name}) {
+  const[show, setshow] = useState(false)
 
 
   return (
@@ -14,7 +20,26 @@ export default function Page({name}) {
           </div>
 
           <div>
-            <FaRegCircleUser className="text-2xl"/>
+            <FaRegCircleUser className="text-3xl max-md:text-2xl " onClick={ ()=> setshow(!show)}/>
+          </div>
+
+          <div className={`absolute bg-white w-[12rem] top-[5rem] right-5 z-40 p-3 shadow-lg  flex flex-col rounded-md gap-y-3  ${show ? "block" : "hidden "}`}>
+           {
+            userlinks.map((link, index) => {
+              return(
+                <NavLink
+                to={link.link}
+                key={index}
+                className={({ isActive, isPending }) =>
+                  isPending ? "relative p-2" : isActive ? "relative p-2 bg-orange-600 flex items-center text-white rounded-md transition-all ease-out gap-x-5" : " relative p-2 flex items-center  gap-x-5 text-gray-500 "
+                }
+                onClick={ ()=> setshow(!show)}
+              >
+                  {link.icon} {link.name}
+              </NavLink>
+              )
+            })
+           }
           </div>
       </nav>
 

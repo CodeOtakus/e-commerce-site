@@ -1,8 +1,5 @@
-import { LuHome } from "react-icons/lu";
-import { FiGrid } from "react-icons/fi";
-import { FiLayers } from "react-icons/fi";
-import { FiBox } from "react-icons/fi";
-
+import { LuHome , LuLogOut , LuUser } from "react-icons/lu";
+import { FiGrid , FiBox, FiLayers , FiSettings } from "react-icons/fi";
 
 const navLinks =[
     {
@@ -29,4 +26,24 @@ const navLinks =[
 ]
 
 
-export {navLinks}
+
+const userlinks =[
+    {
+        name:"Profile",
+        link:"/profile",
+        icon:<LuUser/>
+    },
+    {
+        name:"Settings",
+        link:"/settings",
+        icon:<FiSettings />
+    },
+    {
+        name:"Logout",
+        link:"/logout",
+        icon:<LuLogOut />
+    }
+]
+
+
+export {navLinks , userlinks}
