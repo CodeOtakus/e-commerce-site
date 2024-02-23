@@ -7,7 +7,7 @@ import {NavLink} from "react-router-dom"
 
 
 
-export default function Page({name}) {
+export default function Page({page}) {
   const[show, setshow] = useState(false)
 
 
@@ -44,7 +44,7 @@ export default function Page({name}) {
       </nav>
 
       <div className=" p-5 relative ">
-        {name}
+        {page}
 
         
       </div>
