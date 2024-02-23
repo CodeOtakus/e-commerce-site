@@ -7,8 +7,14 @@ export default function Store() {
     const [store, setStore] = useState<any>([])
 
     useLayoutEffect(() => {
-       setStore(getData("/store/"+id+"/all"))
+       let data = getData("/store/"+id+"/all")
+         data.then((res) => {
+              setStore(res.store)
+         })
+       
     }, [])
+    console.log(store)
+
 
 
   return (
