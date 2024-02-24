@@ -1,4 +1,5 @@
 import {  useLayoutEffect , useState} from "react"
+import { Link } from "react-router-dom"
 import { getData } from "../../../utils/GetData"
 import Empty from "../Empty"
 
@@ -22,8 +23,10 @@ return (
     <div>
         <div className="flex w-full justify-between">
             <h1 className="text-3xl max-md:text-2xl font-semibold ">Store</h1>
-
-            <button className={`p-2 text-white bg-orange-500 shadow-lg rounded-md md:w-[10rem] ${store.legth > 0 ? "" : " animate-bounce"}`}>Add Store</button>
+            
+            <Link to="/store/add" >
+            <button className={`p-2 text-white bg-orange-500 shadow-lg rounded-md md:w-[10rem] ${store.length > 0 ? "" : " animate-bounce"}`}>Add Store</button>
+            </Link>
         </div>
          {
             store.length > 0 ?
