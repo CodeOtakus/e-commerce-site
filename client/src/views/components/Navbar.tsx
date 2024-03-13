@@ -19,9 +19,7 @@ export default function Navbar() {
             </div>
         </div>
        
-        <div>
-            <button className="bg-red-600 w-full p-1 text-white text-lg rounded-md  hover:drop-shadow-xl transition-all ease-in-out hover:-translate-y-1" >Logout</button>
-        </div>
+       
     </nav>
   )
 }

@@ -13,16 +13,10 @@ const navLinks =[
         icon:<FiBox />
     },
     {
-        name:"Category",
-        link:"/category",
+        name:"Analytics",
+        link:"/analytics",
         icon:<FiLayers />
     },
-    {
-        name:"Products",
-        link:"/products",
-        icon:<FiGrid />
-    },
-
 ]
 
 
@@ -45,5 +39,9 @@ const userlinks =[
     }
 ]
 
+
+const storeInputs = [
+    {"name":"store_name" , "type":"text" , "label":"Store Name" , "placeholder":"Enter Store Name"},
+]
 
 export {navLinks , userlinks}

@@ -2,6 +2,7 @@ import {  useLayoutEffect , useState} from "react"
 import { Link } from "react-router-dom"
 import { getData } from "../../../utils/GetData"
 import Empty from "../Empty"
+import StoreDisplay from "../../components/StoreDisplay"
 
 
 export default function Store() {
@@ -11,11 +12,12 @@ export default function Store() {
     useLayoutEffect(() => {
        let data = getData("/store/"+id+"/all")
          data.then((res) => {
-              setStore(res.store)
-         })
+            console.log(res.store)
+              res.store ? setStore(res.store) : console.log("error" + res)
+         }) 
        
     }, [])
-    console.log(store)
+   
 
 
 
@@ -30,10 +32,15 @@ return (
         </div>
          {
             store.length > 0 ?
-                    <p>Items</p>
+                    <div className="w-full  justify-between flex mt-5  gap-3 flex-col">
+                        <StoreDisplay store={store} />
+                    </div>
+
+                    
                     :
                     <Empty item={"Store"} />
          }
+         
     </div>
 )
 }

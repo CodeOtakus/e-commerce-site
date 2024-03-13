@@ -55,9 +55,9 @@ class StoreController extends Controller
     }/// End Method
 
     
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $store_id)
     {
-        $store = Store::find($id);
+        $store = Store::find($store_id);
 
         if (!$store) {
             return response()->json(['message' => 'Store not found'], 404);

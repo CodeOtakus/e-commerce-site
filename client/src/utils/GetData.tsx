@@ -6,13 +6,12 @@ async function getData(url :any) {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}${url}`);
         if (response.status !== 200) {
             toast.error("Something went wrong, please try again later");
-            return null; 
         }
         return response.data;
     } catch (error) {
         console.error("Error fetching data:", error);
         toast.error("Failed to fetch data. Please try again later.");
-        return null; 
+        return "error"; 
     }
 }
 

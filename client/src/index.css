@@ -6,3 +6,7 @@
 :root{
     @apply bg-[#e9ecef]
 }
+
+.form_group{
+    @apply flex flex-col lg:flex-row gap-x-2 w-full justify-between
+}
