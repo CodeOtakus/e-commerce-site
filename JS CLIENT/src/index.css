@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    background-color: #000000;
+   @apply  text-white 
+}
+
+.input-label{
+    @apply after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-white
+}
+
+.input{
+    @apply mb-6 w-full placeholder-shown:border-gray-500 rounded-md border-none focus:ring-0 border border-b border-primary text-black
+}
+
+.button{
+    @apply w-full p-2 text-white rounded-xl hover:drop-shadow-lg transition-all
+}
+
+.gradient{
+    @apply bg-gradient-to-r from-primary to-secondary
+}
+
+.gradient-hover{
+    @apply hover:from-secondary hover:to-primary
+}
+
+.link{
+    @apply text-primary hover:text-secondary transition-colors
+}
