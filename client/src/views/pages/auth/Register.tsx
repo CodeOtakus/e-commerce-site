@@ -11,8 +11,8 @@ export default function Signup() {
     const navigate = useNavigate();
     useEffect(()=>{
         const user = localStorage.getItem("User");
-        if(!user){
-            navigate("/login");
+        if(user){
+            navigate("/");
         }
     
     },[navigate])
