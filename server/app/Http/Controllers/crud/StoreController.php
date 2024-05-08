@@ -63,11 +63,6 @@ class StoreController extends Controller
             return response()->json(['message' => 'Store not found'], 404);
         }
 
-        $name = $request->file("logo").getClientOrigionalName();
-        $image=time()."_".$name;
-        $request->file('logo')->move('images/StoreLogos',$image);
-        
-
         $store->fill($request->all());
         if(!$store->isDirty()){
             return response()->json(['message' => 'At least one value must change'], 422);
