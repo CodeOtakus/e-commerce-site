@@ -4,13 +4,46 @@ import { LuLayoutGrid, LuBox , LuBadgeDollarSign } from "react-icons/lu";
 import { Chart as ChartJS, registerables ,Colors} from 'chart.js';
 ChartJS.register(Colors);
 ChartJS.register(...registerables);
+import { useState,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Bar , Doughnut } from 'react-chartjs-2'
 
 export default function Dashboard() {
+
+  const navigate = useNavigate();
+const [user, setUser] = useState<any>({
+    name: "",
+    email: "",
+    username: "",
+    address: "",
+    country:"",
+    city: "",
+    mobile: "",
+    postal_code: "",
+    userID: "",
+    uniid: "",
+    updated_at: "",
+    created_at: ""
+});
+
+  useEffect(()=>{
+      const User = localStorage.getItem("User");
+      if(User){
+          
+          setUser(JSON.parse(User));
+      }else{
+        navigate("/login");
+      }
+
+      
+  },[])
+
+   
+    console.log(user)
   return (
     <div className='flex flex-col gap-4'>
-        <h1 className='text-3xl text-gray-600'> Welcome <span className='text-orange-500'>Kephas</span></h1>
+        <h1 className='text-3xl text-gray-600'> Welcome <span className='text-orange-500'>{user.name}</span></h1>
 
        <div className='w-full mt-5 flex justify-between md:space-x-4 max-md:flex-col max-md:space-y-4  '>
         <DashboardCards name={"Revenue"} value={"$ 87,000"} icon={<FiTag />} />

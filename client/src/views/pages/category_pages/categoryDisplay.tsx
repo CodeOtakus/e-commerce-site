@@ -1,31 +1,30 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getData } from "../../../utils/GetData";
-
-export default function CategoryDisplay() {
-  const { id } = useParams<{ id: string }>();
-  const [category, setCategory] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getData("/category/" + id)
-      .then((res) => {
-        if (Array.isArray(res.category)) {
-          setCategory(res.category);
-        } else {
-          setCategory([]);
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching category:", error);
-        setLoading(false);
-      });
-  }, [id]);
+// import { useEffect, useState } from "react";
+// import { getData } from "../../../utils/GetData";
+// import { toast } from "sonner";
 
 
 
-  return (
-    <div>hi</div>
-  )
-}
+// type id ={
+//   id:string
+// }
+// export default function CategoryDisplay({ id }:id) {
+//   const [category, setCategory] = useState<any[]>( );
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     setLoading(true); // Set loading to true when fetching new data
+//     getData("/category/" + id + "/all")
+//       .then((res) => {
+//        setCategory(res.categories)
+//         setLoading(false);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching category:", error);
+//         setLoading(false);
+//       });
+//   }, []);
+
+//   return (
+//     <>p</>
+//   )
+// }

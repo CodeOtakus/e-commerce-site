@@ -1,19 +1,22 @@
-import React, {useEffect , useState} from 'react'
-import {useParams , Navigate , Link} from 'react-router-dom'
+import {useEffect , useState} from 'react'
+import {useParams , useNavigate} from 'react-router-dom'
 import {getData} from '../../../utils/GetData'
-import Empty from '../Empty'
 import StoreDetails from './StoreDetails'
 
 export default function ViewStore() {
 
     const {id} = useParams()
     const [store , setStore] = useState<any>({})
-    const [cat , setCat] = useState<any>([])
+    const [setCat] = useState<any>([])
+    let navigate = useNavigate()
 
     useEffect(() => {
         let data = getData("/store/"+id)
         data.then((res): void => {
-            res.store ? setStore(res.store):window.location.href ="/notfound"
+            res.store ? 
+            setStore(res.store)
+            : 
+            navigate("/notfound")
             
         })
     }, [])
@@ -22,7 +25,7 @@ export default function ViewStore() {
     useEffect(() => {
         let data = getData("/category/"+ store.store_id +"/all")
         data.then((res): void => {
-            res.categories ? setCat(res.cat): window.location.href ="/notfound"
+            res.categories ? setCat(res.cat): navigate("/notfound")
         })
 
     }, [])

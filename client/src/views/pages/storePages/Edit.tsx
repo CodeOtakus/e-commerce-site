@@ -23,10 +23,10 @@ export default function Edit() {
     };
 
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: any) => {
         event.preventDefault();
         try {
-            await Axios.patch(`http://localhost:8000/api/store/${store.store_id}`, storeData);
+            await Axios.patch(`${import.meta.env.VITE_API_URL}/store/${store.store_id}`, storeData);
             toast.success("Store updated successfully");
         } catch (error) {
             console.error("Error occurred:", error);
@@ -36,9 +36,9 @@ export default function Edit() {
 
     return (
         <div className="flex justify-center">
-            <div className="w-full max-w-2xl bg-white shadow-md rounded-lg overflow-hidden">
+            <div className="w-full max-w-3xl bg-white shadow-md rounded-lg overflow-hidden">
                 <div className="p-6">
-                    <h2 className="text-2xl font-bold mb-4">Edit Store</h2>
+                    <h2 className="text-3xl text-orange-500 tracking-tight font-bold">Update Store Details</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <Input name="store_name" type="text" label="Store Name" placeholder="Enter Store Name" value={store.store_name} onchange={handleChange} required={false} />

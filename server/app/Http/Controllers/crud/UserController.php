@@ -43,7 +43,6 @@ class UserController extends Controller
         return response()->json([
             'message' => 'User created successfully',
             'user' => $user,
-            'rememberToken' => $user->rememberToken
         ], 201);
 
         
@@ -55,7 +54,10 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $user->save();
-            return response()->json(['user' => $user]);
+            return response()->json([
+                'message' => 'User logged in successfully',
+                'user' => $user,
+            ], 200);
         } else {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
@@ -73,9 +75,6 @@ class UserController extends Controller
 
         $user->update($request->all());
         
-        if(!$user->isDirty()){
-            return response()->json(['message' => 'At least one value must change'], 422);
-        }
        return response()->json(['message' => 'User updated successfully', 'user' => $user]);
     }/// End Method
 

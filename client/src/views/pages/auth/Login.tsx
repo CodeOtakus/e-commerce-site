@@ -1,12 +1,30 @@
 import axios from "axios";
-
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Login() {
+const navigate = useNavigate();
 
-    const formData = {
+useEffect(()=>{
+    const user = localStorage.getItem("User");
+    if(user){
+        navigate("/");
+    }
+
+},[navigate])
+
+    interface FormData {
+        [key: string]: string; 
+    }
+    
+    const formData: FormData = {
         email: '',
         password: ''
-    }
+    };
+    
+    
+    
     
     function handleChange(e:React.ChangeEvent<HTMLInputElement>){
         let fieldName = e.target.name; 
@@ -14,17 +32,23 @@ export default function Login() {
         
        
         formData[fieldName] = value;
+        console.log(formData);
 
     }
 
-    function login(e:Event){
+    async function login(e:any) {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/user/login',formData)
-            .then((res)=>{
-                console.log(res.data)
+        await axios.post(`${import.meta.env.VITE_API_URL}/user/login`, formData)
+            .then((res) => {
+               localStorage.setItem("User",  JSON.stringify(res.data.user));
+                toast.success(res.data.message);
+                navigate("/");
             })
+            .catch(error => {
+                toast.error(error.response.data.message);
+            });
     }
-
+    
 
   return (
     <div className="flex w-full h-screen justify-center items-center ">
@@ -45,7 +69,7 @@ export default function Login() {
 
     <button className="w-full bg-orange-500 text-white p-2 mt-3 rounded-md">Login</button>
 
-    <p className="mt-3 text-gray-700 text-center">Don't have an account? <a href="/register" className="text-orange-500">Register</a></p>
+    <p className="mt-3 text-gray-700 text-center">Don't have an account? <a href="/register" className="text-orange-500">Create an account</a></p>
 </form>
             </div>
            
